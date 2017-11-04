@@ -1,4 +1,6 @@
-- name: "postgresql · {{ _postgresql_version }} · rpm install"
+---
+
+- name: "postgresql - {{ _postgresql_version }} - rpm install"
   package:
     name: "{{ package }}"
     state: installed

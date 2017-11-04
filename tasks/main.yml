@@ -1,4 +1,4 @@
-- name: "postgresql · pgdg · install pgdg {{ postgresql_versions | join(', ') }}"
+- name: "postgresql - pgdg - install pgdg {{ postgresql_versions | join(', ') }}"
   include: pgdg_repo_item.yml
   with_items: "{{ postgresql_versions }}"
   loop_control:
@@ -6,7 +6,7 @@
   become: yes
   become_user: root
 
-- name: "postgresql · rpm · install {{ postgresql_versions | join(', ') }}" 
+- name: "postgresql - rpm - install {{ postgresql_versions | join(', ') }}" 
   include: rpm_item.yml
   with_items: "{{ postgresql_versions }}"
   loop_control:
