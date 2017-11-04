@@ -1,0 +1,7 @@
+---
+
+_postgresql_pgdg_path_distro:
+  Fedora: fedora/fedora-$releasever-$basearch
+  RedHat: redhat/rhel-$releasever-$basearch
+
+_postgresql_pgdg_path: "{{ _postgresql_pgdg_path_distro | distro(vars) }}"

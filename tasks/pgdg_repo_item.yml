@@ -16,7 +16,7 @@
     yum_repository:
       name: pgdg{{ _pgdg_version_stripped }}
       description: PostgreSQL {{ _pgdg_version }} $releasever - $basearch
-      baseurl: https://download.postgresql.org/pub/repos/yum/{{ _pgdg_version }}/redhat/rhel-$releasever-$basearch
+      baseurl: https://download.postgresql.org/pub/repos/yum/{{ _pgdg_version }}/{{ _postgresql_pgdg_path }}/
       enabled: yes
       file: pgdg-{{ _pgdg_version_stripped }}-centos
       gpgcheck: yes
