@@ -11,10 +11,10 @@ galaxy_info:
     - name: Fedora
       versions:
         - 26
-# Not yet supported
-#    - name: Ubuntu
-#        - xenial
-#        - yakkety
+        # Not yet supported
+        # - name: Ubuntu
+        #     - xenial
+        #     - yakkety
   galaxy_tags:
     - powo
     - postgresql
