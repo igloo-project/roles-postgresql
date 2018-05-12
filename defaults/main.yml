@@ -16,3 +16,4 @@ _pgdg_available_versions:
   - "9.4"
   - "9.5"
   - "9.6"
+  - "10"

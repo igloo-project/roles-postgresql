@@ -2,7 +2,6 @@
 
 _postgresql_pgdg_path_distro:
   # handle beta version
-  Fedora_27: fedora/fedora-26-$basearch
   Fedora: fedora/fedora-$releasever-$basearch
   RedHat: redhat/rhel-$releasever-$basearch
 
