@@ -1,0 +1,8 @@
+---
+
+- name: check pgdg version
+  fail:
+    msg: "pgdg version must be one of {{ _pgdg_available_versions | join(', ')  }}"
+  when: _pgdg_version not in _pgdg_available_versions
+  vars:
+    _pgdg_version: "{{ pgdg_version }}"

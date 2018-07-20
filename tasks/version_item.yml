@@ -1,10 +1,10 @@
 ---
 
-- name: "postgresql - {{ _postgresql_version }} - rpm install"
+- name: "postgresql - {{ _postgresql_version }} - install"
   package:
     name: "{{ package }}"
     state: installed
-  with_items: "{{ postgresql_packages + postgresql_default_packages }}"
+  with_items: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
   loop_control:
     loop_var: package
 

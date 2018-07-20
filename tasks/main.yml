@@ -1,15 +1,26 @@
 ---
 
+- include_tasks: pgdg_check.yml
+  with_items: "{{ postgresql_versions }}"
+  loop_control:
+    loop_var: pgdg_version
+
 - name: "postgresql - pgdg - install pgdg {{ postgresql_versions | join(', ') }}"
-  include: pgdg_repo_item.yml
+  include_tasks: pgdg_repo_item.yml
   with_items: "{{ postgresql_versions }}"
   loop_control:
     loop_var: pgdg_version
   become: true
   become_user: root
+  when: ansible_os_family == 'RedHat'
 
-- name: "postgresql - rpm - install {{ postgresql_versions | join(', ') }}"
-  include: rpm_item.yml
+- include_tasks: pgdg_debian.yml
+  become: true
+  become_user: root
+  when: ansible_os_family == 'Debian'
+
+- name: "postgresql - install {{ postgresql_versions | join(', ') }}"
+  include_tasks: version_item.yml
   with_items: "{{ postgresql_versions }}"
   loop_control:
     loop_var: postgresql_version

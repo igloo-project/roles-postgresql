@@ -4,9 +4,12 @@ postgresql_versions:
   - "9.5"
 
 postgresql_default_packages:
-  - postgresql{{ _postgresql_version_stripped }}
-  - postgresql{{ _postgresql_version_stripped }}-server
-  - postgresql{{ _postgresql_version_stripped }}-libs
+  RedHat:
+    - postgresql{{ _postgresql_version_stripped }}
+    - postgresql{{ _postgresql_version_stripped }}-server
+    - postgresql{{ _postgresql_version_stripped }}-libs
+  Debian:
+    - postgresql-{{ _postgresql_version }}
 
 postgresql_packages: []
 
