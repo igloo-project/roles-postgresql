@@ -9,16 +9,22 @@
       owner: root
       group: root
       mode: u=rw,g=r,o=r
-
-#  - name: "pgdg - {{ _pgdg_version }} - .repo"
-#    yum_repository:
-#      name: pgdg{{ _pgdg_version_stripped }}
-#      description: PostgreSQL {{ _pgdg_version }} $releasever - $basearch
-#      baseurl: https://download.postgresql.org/pub/repos/yum/{{ _pgdg_version }}/{{ _postgresql_pgdg_path }}/
-#      enabled: true
-#      file: pgdg-{{ _pgdg_version_stripped }}-centos
-#      gpgcheck: true
-#      gpgkey: file://{{ _pgdg_key_dest }}
+  - name: "pgdg - common - .repo"
+    copy:
+      dest: /etc/yum.repos.d/pgdg-common-centos.repo
+      content: |
+        [pgdg-common]
+        baseurl = https://download.postgresql.org/pub/repos/yum/common/{{ _postgresql_pgdg_path }}/
+        enabled = 1
+        gpgcheck = 1
+        gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
+        name = PostgreSQL Common $releasever - $basearch
+        {% if ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8' %}
+        module_hotfixes = true
+        {% endif %}
+      owner: root
+      group: root
+      mode: u=rw,g=r,o=r
   - name: "pgdg - {{ _pgdg_version }} - .repo"
     copy:
       dest: /etc/yum.repos.d/pgdg-{{ _pgdg_version_stripped }}-centos.repo
