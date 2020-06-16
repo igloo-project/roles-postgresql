@@ -29,12 +29,12 @@
     copy:
       dest: /etc/yum.repos.d/pgdg-{{ _pgdg_version_stripped }}-centos.repo
       content: |
-        [pgdg12]
-        baseurl = https://download.postgresql.org/pub/repos/yum/{{ _pgdg_version_stripped }}/{{ _postgresql_pgdg_path }}/
+        [pgdg{{ _pgdg_version_stripped }}]
+        baseurl = https://download.postgresql.org/pub/repos/yum/{{ _pgdg_version }}/{{ _postgresql_pgdg_path }}/
         enabled = 1
         gpgcheck = 1
         gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-{{ _pgdg_version_stripped }}
-        name = PostgreSQL {{ _pgdg_version_stripped }} $releasever - $basearch
+        name = PostgreSQL {{ _pgdg_version }} $releasever - $basearch
         {% if ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8' %}
         module_hotfixes = true
         {% endif %}
