@@ -3,6 +3,11 @@
 - name: deb pgdg
   when: ansible_os_family == 'Debian'
   block:
+  - name: "pgdg - gpg key"
+    # add key needs gpg
+    package:
+      name: gnupg
+
   - name: "pgdg - deb key"
     apt_key:
       id: ACCC4CF8
