@@ -1,8 +1,13 @@
 ---
 
 _postgresql_pgdg_path_distro:
-  # handle beta version
   Fedora: fedora/fedora-$releasever-$basearch
   RedHat: redhat/rhel-$releasever-$basearch
 
+# handle postgresql 9.6 + Fedora 35
+_postgresql_pgdg96_path_distro:
+  Fedora: fedora/fedora-34-$basearch
+  RedHat: redhat/rhel-$releasever-$basearch
+
+_postgresql_pgdg96_path: "{{ _postgresql_pgdg96_path_distro | distro(vars) }}"
 _postgresql_pgdg_path: "{{ _postgresql_pgdg_path_distro | distro(vars) }}"

@@ -14,7 +14,7 @@
       dest: /etc/yum.repos.d/pgdg-common-centos.repo
       content: |
         [pgdg-common]
-        baseurl = https://download.postgresql.org/pub/repos/yum/common/{{ _postgresql_pgdg_path }}/
+        baseurl = https://download.postgresql.org/pub/repos/yum/common/{{ _postgresql_pgdg_path if _pgdg_version != '9.6' else _postgresql_pgdg96_path }}/
         enabled = 1
         gpgcheck = 1
         gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
