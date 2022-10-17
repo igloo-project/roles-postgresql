@@ -1,7 +1,7 @@
 ---
 
 postgresql_versions:
-  - "9.5"
+  - "15"
 
 postgresql_default_packages:
   RedHat:
@@ -24,3 +24,4 @@ _pgdg_available_versions:
   - "12"
   - "13"
   - "14"
+  - "15"
