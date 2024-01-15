@@ -1,8 +1,0 @@
----
-- name: Converge
-  hosts: all
-  roles:
-    - role: postgresql
-      postgresql_versions:
-        - "9.5"
-        - "9.6"
