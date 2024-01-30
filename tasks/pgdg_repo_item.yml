@@ -33,7 +33,7 @@
         baseurl = https://download.postgresql.org/pub/repos/yum/{{ _pgdg_version }}/{{ _postgresql_pgdg_path if _pgdg_version != '9.6' else _postgresql_pgdg96_path }}/
         enabled = 1
         gpgcheck = 1
-        gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-{{ _pgdg_version_stripped }}
+        gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
         name = PostgreSQL {{ _pgdg_version }} $releasever - $basearch
         {% if ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8' %}
         module_hotfixes = true
@@ -45,5 +45,5 @@
     _pgdg_version: "{{ pgdg_version }}"
     _pgdg_version_stripped: "{{ pgdg_version.replace('.', '') }}"
     _pgdg_key_src: "RPM-GPG-KEY-PGDG-{{ ansible_distribution }}"
-    _pgdg_key_dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-{{ _pgdg_version_stripped }}
+    _pgdg_key_dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
 
