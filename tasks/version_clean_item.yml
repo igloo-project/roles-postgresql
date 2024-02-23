@@ -1,0 +1,13 @@
+---
+
+- name: "postgresql - {{ _postgresql_version }} - drop packages"
+  package:
+    name: "{{ package }}"
+    state: absent
+  with_items: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
+  loop_control:
+    loop_var: package
+
+  vars:
+    _postgresql_version: "{{ postgresql_clean_version }}"
+    _postgresql_version_stripped: "{{ postgresql_clean_version.replace('.', '') }}"
