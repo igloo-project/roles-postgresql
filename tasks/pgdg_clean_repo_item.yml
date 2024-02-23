@@ -1,0 +1,15 @@
+---
+
+- name: clean old pgdg
+  block:
+  - name: "drop pgdg - {{ _pgdg_version }} - rpm key"
+    file:
+      path: /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-{{ _pgdg_version_stripped }}
+      state: absent
+  - name: drop pgdg - {{ _pgdg_version }} - .repo
+    file:
+      path: /etc/yum.repos.d/pgdg-{{ _pgdg_version_stripped }}-centos.repo
+      state: absent
+  vars:
+    _pgdg_version: "{{ pgdg_clean_version }}"
+    _pgdg_version_stripped: "{{ pgdg_clean_version.replace('.', '') }}"
