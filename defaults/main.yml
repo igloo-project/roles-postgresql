@@ -26,3 +26,5 @@ _pgdg_available_versions:
   - "14"
   - "15"
   - "16"
+
+pgdg_clean_version: []

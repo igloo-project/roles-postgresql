@@ -1,11 +1,6 @@
 ---
 
 - block:
-
-    - include_tasks: pgdg_clean_check.yml
-      with_items: "{{ postgresql_clean_versions }}"
-      loop_control:
-        loop_var: pgdg_clean_version
     
     - name: "postgresql - pgdg - drop pgdg {{ postgresql_clean_versions | join(', ') }}"
       include_tasks: pgdg_clean_repo_item.yml
