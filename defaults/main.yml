@@ -27,4 +27,4 @@ _pgdg_available_versions:
   - "15"
   - "16"
 
-pgdg_clean_version: []
+postgresql_clean_versions: []

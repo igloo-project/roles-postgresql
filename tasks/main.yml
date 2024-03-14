@@ -6,7 +6,7 @@
       include_tasks: pgdg_clean_repo_item.yml
       with_items: "{{ postgresql_clean_versions }}"
       loop_control:
-        loop_var: pgdg_clean_version
+        loop_var: postgresql_clean_version
       when: ansible_os_family == 'RedHat'
 
     - name: "postgresql - drop {{ postgresql_clean_versions | join(', ') }}"

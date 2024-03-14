@@ -11,5 +11,5 @@
       path: /etc/yum.repos.d/pgdg-{{ _pgdg_version_stripped }}-centos.repo
       state: absent
   vars:
-    _pgdg_version: "{{ pgdg_clean_version }}"
-    _pgdg_version_stripped: "{{ pgdg_clean_version.replace('.', '') }}"
+    _pgdg_version: "{{ postgresql_clean_version }}"
+    _pgdg_version_stripped: "{{ postgresql_clean_version.replace('.', '') }}"
