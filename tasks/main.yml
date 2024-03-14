@@ -9,9 +9,6 @@
         loop_var: pgdg_clean_version
       when: ansible_os_family == 'RedHat'
 
-    - import_tasks: pgdg_clean_debian.yml
-      when: ansible_os_family == 'Debian'
-
     - name: "postgresql - drop {{ postgresql_clean_versions | join(', ') }}"
       include_tasks: version_clean_item.yml
       with_items: "{{ postgresql_clean_versions }}"
