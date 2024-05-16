@@ -7,6 +7,20 @@
   with_items: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
   loop_control:
     loop_var: package
+  when: "not postgresql_client_only"
+
+  vars:
+    _postgresql_version: "{{ postgresql_version }}"
+    _postgresql_version_stripped: "{{ postgresql_version.replace('.', '') }}"
+
+- name: "postgresql - {{ _postgresql_version }} - install client"
+  package:
+    name: "{{ package }}"
+    state: present
+  with_items: "{{ postgresql_packages + postgresql_client_packages | distro(vars) }}"
+  loop_control:
+    loop_var: package
+  when: "postgresql_client_only"
 
   vars:
     _postgresql_version: "{{ postgresql_version }}"

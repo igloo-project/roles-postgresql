@@ -1,7 +1,16 @@
 ---
 
+# true if only repository and client (psql/pg_dump) are needed
+postgresql_client_only: false
+
 postgresql_versions:
   - "16"
+
+postgresql_client_packages:
+  RedHat:
+    - postgresql{{ _postgresql_version_stripped }}-client
+  Debian:
+    - postgresql-{{ _postgresql_version }}-client
 
 postgresql_default_packages:
   RedHat:
