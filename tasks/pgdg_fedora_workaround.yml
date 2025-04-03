@@ -1,0 +1,22 @@
+# Fedora 41: postgresql distro package replaces postgresql16 pgdg packages
+# postgresql Fedora packages do not provide expected .service systemd config
+# workaround: postgresql packages from fedora repos are ignored
+- name: "postgresql - ignore distro package"
+  copy:
+    dest: /etc/dnf/repos.override.d/postgresql-workaround.repo
+    content: |
+      [fedora]
+      exclude=postgresql*
+
+      [updates]
+      exclude=postgresql*
+  become: true
+
+- name: "postgresql - remove distro package"
+  package:
+    name:
+    - postgresql
+    - postgresql-server
+    - postgresql-private-libs
+    state: absent
+  become: true
