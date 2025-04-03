@@ -1,6 +1,20 @@
 ---
 
 - block:
+
+    # Fedora 41: postgresql distro package replaces postgresql16 pgdg packages
+    # postgresql Fedora packages do not provide expected .service systemd config
+    # workaround: postgresql packages from fedora repos are ignored
+    - name: "postgresql - ignore distro package"
+      copy:
+        dest: /etc/dnf/repos.override.d/postgresql-workaround.repo
+        content: |
+          [fedora]
+          exclude=postgresql*
+
+          [updates]
+          exclude=postgresql*
+      when: ansible_distribution == 'Fedora'
     
     - name: "postgresql - pgdg - drop pgdg {{ postgresql_clean_versions | join(', ') }}"
       include_tasks: pgdg_clean_repo_item.yml
