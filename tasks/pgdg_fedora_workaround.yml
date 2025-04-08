@@ -12,11 +12,9 @@
       exclude=postgresql*
   become: true
 
+# package or dnf fail
 - name: "postgresql - remove distro package"
-  package:
-    name:
-    - postgresql
-    - postgresql-server
-    - postgresql-private-libs
-    state: absent
+  shell: rpm -e postgresql postgresql-server
+  failed_when: false
+  changed_when: true
   become: true
