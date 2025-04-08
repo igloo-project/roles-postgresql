@@ -14,7 +14,7 @@
 
 # package or dnf fail
 - name: "postgresql - remove distro package"
-  shell: rpm -e postgresql postgresql-server
+  shell: rpm -e postgresql postgresql-server postgresql-private-libs
   failed_when: false
   changed_when: true
   become: true
