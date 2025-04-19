@@ -2,11 +2,8 @@
 
 - name: "postgresql - {{ _postgresql_version }} - drop packages"
   package:
-    name: "{{ package }}"
+    name: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
     state: absent
-  with_items: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
-  loop_control:
-    loop_var: package
 
   vars:
     _postgresql_version: "{{ postgresql_clean_version }}"
