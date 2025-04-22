@@ -4,6 +4,7 @@
   package:
     name: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
     state: absent
+    allowerasing: true
 
   vars:
     _postgresql_version: "{{ postgresql_clean_version }}"
