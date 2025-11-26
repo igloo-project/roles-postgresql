@@ -3,19 +3,22 @@
 - name: deb pgdg
   when: ansible_os_family == 'Debian'
   block:
-  - name: "pgdg - gpg key"
-    # add key needs gpg
+  - name: "pgdg - python3-debian"
+    # needed for deb822_repository
     package:
-      name: gnupg
+      name: python3-debian
+  
+  - file:
+      # Delete old config
+      path: /etc/apt/sources.list.d/pgdg.list
+      state: absent
 
-  - name: "pgdg - deb key"
-    apt_key:
-      id: ACCC4CF8
-      url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
-      state: present
-
-  - name: "pgdg - .repo"
-    apt_repository:
-      repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
-      state: present
-      filename: pgdg
+  - deb822_repository:
+      name: pgdg
+      uris: http://apt.postgresql.org/pub/repos/apt/
+      signed_by: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+      types:
+      - deb
+      suites: "{{ ansible_distribution_release }}-pgdg"
+      components:
+      - main
