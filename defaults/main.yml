@@ -4,7 +4,7 @@
 postgresql_client_only: false
 
 postgresql_versions:
-  - "16"
+  - "18"
 
 postgresql_client_packages:
   RedHat:
@@ -23,18 +23,10 @@ postgresql_default_packages:
 postgresql_packages: []
 
 _pgdg_available_versions:
-  - "9.2"
-  - "9.3"
-  - "9.4"
-  - "9.5"
-  - "9.6"
-  - "10"
-  - "11"
-  - "12"
-  - "13"
   - "14"
   - "15"
   - "16"
   - "17"
+  - "18"
 
 postgresql_clean_versions: []
