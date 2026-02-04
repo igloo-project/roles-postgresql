@@ -19,7 +19,7 @@
         gpgcheck = 1
         gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
         name = PostgreSQL Common $releasever - $basearch
-        {% if ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8' %}
+        {% if ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8' %}
         module_hotfixes = true
         {% endif %}
       owner: root
@@ -35,7 +35,7 @@
         gpgcheck = 1
         gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
         name = PostgreSQL {{ _pgdg_version }} $releasever - $basearch
-        {% if ansible_os_family == 'RedHat' and ansible_distribution_major_version == '8' %}
+        {% if ansible_facts['os_family'] == 'RedHat' and ansible_facts['distribution_major_version'] == '8' %}
         module_hotfixes = true
         {% endif %}
       owner: root
@@ -44,6 +44,6 @@
   vars:
     _pgdg_version: "{{ pgdg_version }}"
     _pgdg_version_stripped: "{{ pgdg_version.replace('.', '') }}"
-    _pgdg_key_src: "RPM-GPG-KEY-PGDG-{{ ansible_distribution }}"
+    _pgdg_key_src: "RPM-GPG-KEY-PGDG-{{ ansible_facts['distribution'] }}"
     _pgdg_key_dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG
 

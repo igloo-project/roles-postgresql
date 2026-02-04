@@ -2,14 +2,14 @@
 
 - block:
     - include_tasks: pgdg_fedora_workaround.yml
-      when: ansible_distribution == 'Fedora'
+      when: ansible_facts['distribution'] == 'Fedora'
     
     - name: "postgresql - pgdg - drop pgdg {{ postgresql_clean_versions | join(', ') }}"
       include_tasks: pgdg_clean_repo_item.yml
       with_items: "{{ postgresql_clean_versions }}"
       loop_control:
         loop_var: postgresql_clean_version
-      when: ansible_os_family == 'RedHat'
+      when: ansible_facts['os_family'] == 'RedHat'
 
     - name: "postgresql - drop {{ postgresql_clean_versions | join(', ') }}"
       include_tasks: version_clean_item.yml
@@ -27,10 +27,10 @@
       with_items: "{{ postgresql_versions }}"
       loop_control:
         loop_var: pgdg_version
-      when: ansible_os_family == 'RedHat'
+      when: ansible_facts['os_family'] == 'RedHat'
     
     - import_tasks: pgdg_debian.yml
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
     
     - name: "postgresql - install {{ postgresql_versions | join(', ') }}"
       include_tasks: version_item.yml

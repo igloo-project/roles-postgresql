@@ -2,7 +2,7 @@
 
 - name: "postgresql - {{ _postgresql_version }} - drop packages"
   package:
-    name: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
+    name: "{{ postgresql_packages + lookup('distro', postgresql_default_packages) }}"
     state: absent
     allowerasing: true
 

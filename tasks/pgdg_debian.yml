@@ -1,7 +1,7 @@
 ---
 
 - name: deb pgdg
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   block:
   - name: "pgdg - python3-debian"
     # needed for deb822_repository
@@ -19,6 +19,6 @@
       signed_by: https://www.postgresql.org/media/keys/ACCC4CF8.asc
       types:
       - deb
-      suites: "{{ ansible_distribution_release }}-pgdg"
+      suites: "{{ ansible_facts['distribution_release'] }}-pgdg"
       components:
       - main

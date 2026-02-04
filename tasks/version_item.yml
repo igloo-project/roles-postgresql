@@ -4,7 +4,7 @@
   package:
     name: "{{ package }}"
     state: present
-  with_items: "{{ postgresql_packages + postgresql_default_packages | distro(vars) }}"
+  with_items: "{{ postgresql_packages + lookup('distro', postgresql_default_packages) }}"
   loop_control:
     loop_var: package
   when: "not postgresql_client_only"
@@ -17,7 +17,7 @@
   package:
     name: "{{ package }}"
     state: present
-  with_items: "{{ postgresql_packages + postgresql_client_packages | distro(vars) }}"
+  with_items: "{{ postgresql_packages + lookup('distro', postgresql_client_packages) }}"
   loop_control:
     loop_var: package
   when: "postgresql_client_only"

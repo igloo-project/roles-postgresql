@@ -9,5 +9,5 @@ _postgresql_pgdg96_path_distro:
   Fedora: fedora/fedora-35-$basearch
   RedHat: redhat/rhel-$releasever-$basearch
 
-_postgresql_pgdg96_path: "{{ _postgresql_pgdg96_path_distro | distro(vars) }}"
-_postgresql_pgdg_path: "{{ _postgresql_pgdg_path_distro | distro(vars) }}"
+_postgresql_pgdg96_path: "{{ lookup('distro', _postgresql_pgdg96_path_distro) }}"
+_postgresql_pgdg_path: "{{ lookup('distro', _postgresql_pgdg_path_distro) }}"
